@@ -2,59 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Enums\UserRole;
+use App\Exports\ElectionExport;
+use App\Exports\MemberExport;
 use App\Models\Member;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Support\Facades\Gate;
 
 class MemberExportController
 {
-    public function __invoke(Request $request)
+    public function __invoke(#[CurrentUser] User $user)
     {
         Gate::authorize('export', Member::class);
 
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="members-'.date('Y-m-d-His').'.csv"',
-        ];
+        if ($user->hasRole(UserRole::ELECTION)) {
+            return ElectionExport::make()->download();
+        }
 
-        $callback = function () {
-            $file = fopen('php://output', 'w');
-
-            fputcsv($file, [
-                'Username',
-                'Email Target',
-                'Email Nick',
-                'Email Full',
-                'Libera Nick',
-                'Libera Cloak',
-                'Libera Cloak Applied',
-                'Status',
-                'Created At',
-                'Updated At',
-            ]);
-
-            Member::query()
-                ->orderBy('username')
-                ->chunk(100, function ($members) use ($file) {
-                    foreach ($members as $member) {
-                        fputcsv($file, [
-                            $member->username,
-                            $member->email_target,
-                            $member->email_nick,
-                            $member->email_full,
-                            $member->libera_nick,
-                            $member->libera_cloak,
-                            $member->libera_cloak_applied,
-                            $member->status->value,
-                            $member->created_at,
-                            $member->updated_at,
-                        ]);
-                    }
-                });
-
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        return MemberExport::make()->download();
     }
 }
