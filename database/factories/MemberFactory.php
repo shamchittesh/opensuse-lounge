@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Enums\MemberStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,14 +18,34 @@ class MemberFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => $this->faker->unique()->userName(),
-            'email_target' => $this->faker->unique()->safeEmail(),
-            'email_nick' => $this->faker->optional()->userName(),
-            'email_full' => $this->faker->optional()->email(),
-            'libera_nick' => $this->faker->optional()->userName(),
+            'username' => fake()->unique()->userName(),
+            'email_target' => fake()->safeEmail(),
+            'email_nick' => fake()->optional()->userName(),
+            'email_full' => fake()->optional()->email(),
+            'libera_nick' => fake()->optional()->userName(),
             'libera_cloak' => $this->faker->optional()->domainWord() . '.users.libera.chat',
-            'libera_cloak_applied' => $this->faker->optional()->dateTimeThisYear(),
-            'status' => $this->faker->randomElement(['active', 'emeritus']),
+            'libera_cloak_applied' => fake()->optional()->iso8601(),
+            'status' => fake()->randomElement(MemberStatus::cases()),
         ];
+    }
+
+    /**
+     * Indicate that the member is active.
+     */
+    public function active(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'status' => MemberStatus::ACTIVE,
+        ]);
+    }
+
+    /**
+     * Indicate that the member is emeritus.
+     */
+    public function emeritus(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'status' => MemberStatus::EMERITUS,
+        ]);
     }
 }
