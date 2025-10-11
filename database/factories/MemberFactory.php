@@ -23,7 +23,7 @@ class MemberFactory extends Factory
             'email_nick' => fake()->optional()->userName(),
             'email_full' => fake()->optional()->email(),
             'libera_nick' => fake()->optional()->userName(),
-            'libera_cloak' => fake()->optional()->domainName(),
+            'libera_cloak' => $this->faker->optional()->domainWord() . '.users.libera.chat',
             'libera_cloak_applied' => fake()->optional()->iso8601(),
             'status' => fake()->randomElement(MemberStatus::cases()),
         ];

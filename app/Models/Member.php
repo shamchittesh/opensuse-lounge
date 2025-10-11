@@ -22,7 +22,7 @@ class Member extends Model
         'libera_cloak_applied',
         'status',
     ];
-
+  
     protected function casts(): array
     {
         return [
@@ -40,7 +40,6 @@ class Member extends Model
     {
         $statuses = is_array($statuses) ? $statuses : [$statuses];
         $statusValues = array_map(fn($status) => $status->value, $statuses);
-
         $query->whereIn('status', $statusValues);
     }
 }
