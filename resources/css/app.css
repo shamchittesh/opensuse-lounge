@@ -9,3 +9,20 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #f1f1f1;
+  }
+
+  a {
+    color: #66ccff;
+  }
+
+  /* adjust specific sections if needed */
+  .card {
+    background-color: #1e1e1e;
+    color: #eaeaea;
+  }
+}
