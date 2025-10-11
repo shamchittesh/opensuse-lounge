@@ -8,7 +8,7 @@
 @endcan
 
 @can('export', App\Models\Member::class)
-    <a href="{{ route('members.index', ['export' => 'csv']) }}">Export CSV</a>
+    <a href="{{ route('members.export') }}">Export CSV</a>
 @endcan
 
 <table border="1">
