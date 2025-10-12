@@ -2,8 +2,10 @@
 Your account has been created!
 
 here are your credentials:
+
 Email: {{ $email }}
+
 Password: {{ $password }}
 
-Thanks,<br>
+Thanks<br>
 </x-mail::message>

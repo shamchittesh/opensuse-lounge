@@ -5,24 +5,247 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* Semantic color system using CSS variables for automatic light/dark mode */
+:root {
+    /* Surface colors */
+    --app-bg: #ecfff8;
+    --app-surface: #ffffff;
+    --app-surface-hover: #f8fffe;
+
+    /* Button colors - Based on openSUSE brand guidelines */
+    --app-button-primary: #173f4f;        /* Cyan (Primary) */
+    --app-button-primary-text: #ffffff;
+    --app-button-secondary: #ecfff8;      /* Dark Green (Secondary) */
+    --app-button-secondary-text: #173f4f;
+    --app-button-danger: #c95d63;
+    --app-button-ghost: #ffffff;
+    --app-button-outline: #173f4f;        /* Green (Primary) */
+
+    /* Alert colors - harmonized with openSUSE palette */
+    --app-alert-success: #5d9e1f;
+    --app-alert-error: #c95d63;
+    --app-alert-warning: #d4941d;
+    --app-alert-info: #4D7D86;
+    
+    /* Text colors */
+    --app-text-primary: #0c322c;
+    --app-text-secondary: #123f38;
+    --app-text-tertiary: #0F4030;
+    
+    /* Brand colors - openSUSE official palette */
+    --app-brand-primary: #173f4f;   /* Dark Blue (Primary) */
+    --app-brand-hover: #35b9ab;     /* Cyan (Primary) */
+    --app-accent: #173f4f;          /* Green (Primary) */
+    
+    /* Borders */
+    --app-border: rgba(18, 63, 56, 0.2);
+    
+    /* Shadows */
+    --app-shadow-sm: 0 1px 2px 0 rgb(77 125 134 / 0.05);
+    --app-shadow-md: 0 4px 14px 0 rgb(77 125 134 / 0.25);
+    --app-shadow-lg: 0 10px 25px 0 rgb(77 125 134 / 0.35);
+
+    --app-gradient-opensuse: radial-gradient(at 64% 27%, #a9e9e1 0px, transparent 50%), radial-gradient(at 71% 60%, #70c4e7 0px, transparent 40%), radial-gradient(at 11% 41%, #cdecd7 0px, transparent 50%);
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #f1f1f1;
-  }
+    :root {
+        /* Surface colors */
+        --app-bg: #0c322c;
+        --app-surface: #123f38;
+        --app-surface-hover: #0F4030;
 
-  a {
-    color: #66ccff;
-  }
+        /* Button colors - Dark mode (keeping primary very light as requested) */
+        --app-button-primary: #ccedea;        /* Cyan 25% (very light) */
+        --app-button-primary-text: #173f4f;   /* Dark Blue for contrast */
+        --app-button-secondary: #35b9ab;      /* Green 90% */
+        --app-button-secondary-text: #173f4f;
+        --app-button-danger: #e88b90;
+        --app-button-ghost: #ffffff;
+        --app-button-outline: #35b9ab;        /* Green 90% */
+        /* Alert colors - harmonized with openSUSE palette (dark mode) */
+        --app-alert-success: #8dd946;
+        --app-alert-error: #e88b90;
+        --app-alert-warning: #f5b855;
+        --app-alert-info: #7DC1AE;
 
-  /* adjust specific sections if needed */
-  .card {
-    background-color: #1e1e1e;
-    color: #eaeaea;
-  }
+        /* Text colors */
+        --app-text-primary: #ccedea;
+        --app-text-secondary: #bfe8e1;
+        --app-text-tertiary: #A5C7C3;
+        
+        /* Brand colors - openSUSE official palette (dark mode) */
+        --app-brand-primary: #35b9ab;   /* Cyan (Primary) */
+        --app-brand-hover: #4ac0b4;     /* Cyan 90% */
+        --app-accent: #35b9ab;          /* Green 90% */
+        
+        /* Borders */
+        --app-border: rgba(191, 232, 225, 0.2);
+        
+        /* Shadows */
+        --app-shadow-sm: 0 1px 2px 0 rgb(12 50 44 / 0.8);
+        --app-shadow-md: 0 4px 14px 0 rgb(12 50 44 / 0.9);
+        --app-shadow-lg: 0 10px 25px 0 rgb(12 50 44 / 0.95);
+
+        /* Gradients */
+        --app-gradient-opensuse: radial-gradient(at 64% 27%, #0C7A6E 0px, transparent 50%), radial-gradient(at 71% 60%, #264C5C 0px, transparent 40%), radial-gradient(at 11% 41%, #45875B 0px, transparent 50%);
+    }
 }
+
+@theme {
+    /* Font Family */
+    --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+    
+    /* Background colors - generates bg-canvas, bg-card, bg-card-hover */
+    --color-canvas: var(--app-bg);
+    --color-card: var(--app-surface);
+    --color-card-hover: var(--app-surface-hover);
+
+    /* Button colors - generates bg-button-primary, text-button-primary-text, etc. */
+    --color-button-primary: var(--app-button-primary);
+    --color-button-primary-text: var(--app-button-primary-text);
+    --color-button-secondary: var(--app-button-secondary);
+    --color-button-secondary-text: var(--app-button-secondary-text);
+    --color-button-danger: var(--app-button-danger);
+    --color-button-ghost: var(--app-button-ghost);
+    --color-button-outline: var(--app-button-outline);
+    /* Alert colors - generates success error warning info for borders and  background and text colors */
+    --color-alert-success: var(--app-alert-success);
+    --color-alert-error: var(--app-alert-error);
+    --color-alert-warning: var(--app-alert-warning);
+    --color-alert-info: var(--app-alert-info);
+
+    
+    /* Text colors - generates text-primary, text-secondary, text-muted */
+    --color-primary: var(--app-text-primary);
+    --color-secondary: var(--app-text-secondary);
+    --color-muted: var(--app-text-tertiary);
+    
+    /* Interactive colors - generates bg-brand, hover:bg-brand-hover */
+    --color-brand: var(--app-brand-primary);
+    --color-brand-hover: var(--app-brand-hover);
+    
+    /* Accent color - generates bg-accent, text-accent */
+    --color-accent: var(--app-accent);
+    --color-accent-500: #73ba25;
+    --color-accent-600: #5c951e;
+    
+    /* Border color - generates border-default */
+    --color-default: var(--app-border);
+    
+    /* Shadows */
+    --shadow-sm: var(--app-shadow-sm);
+    --shadow-md: var(--app-shadow-md);
+    --shadow-lg: var(--app-shadow-lg);
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slide-in {
+    from { 
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Custom utility classes */
+/* radial-gradient(at 64% 27%, #a9e9e1 0px, transparent 50%), radial-gradient(at 71% 60%, #70c4e7 0px, transparent 40%), radial-gradient(at 11% 41%, #cdecd7 0px, transparent 50%) #ecfff8 */
+.bg-gradient-opensuse {
+    background: var(--app-gradient-opensuse);
+}
+
+.secondary-button-effect { 
+    /* box-shadow: inset -10px -10px 20px -20px rgba(0, 0, 0, 0.3333333333); */
+    border: solid 1px rgb(190.84, 238.96, 221.2315789474);
+}
+
+@utility shadow-brand {
+    box-shadow: var(--shadow-md);
+}
+
+@utility shadow-brand-lg {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Base styles */
+body {
+    background: var(--color-canvas);
+    color: var(--color-primary);
+}
+
+
+/* Focus styles */
+*:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 4px rgba(115, 186, 37, 0.2);
+}
+
+/* Autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--app-surface) inset !important;
+    -webkit-text-fill-color: var(--app-text-primary) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-internal-autofill-selected {
+    background-color: var(--app-surface) !important;
+    color: var(--app-text-primary) !important;
+}
+
+/* Pagination styles */
+nav[role="navigation"] {
+    /* Pagination container */
+    & p {
+        /* "Showing X to Y of Z results" text */
+        @apply text-secondary;
+    }
+
+    /* Pagination links container */
+    & div[role="navigation"] {
+        @apply flex items-center gap-2 border-0;
+    }
+
+    /* Individual pagination links */
+    & > a,
+    & > span {
+        @apply inline-flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg transition-all;
+        min-width: 2.5rem;
+    }
+
+    /* Regular pagination link */
+    & a {
+        @apply bg-card text-primary border border-default hover:bg-brand hover:text-white hover:border-brand;
+    }
+
+    /* Active page */
+    & span[aria-current="page"] {
+        @apply bg-brand text-white border border-brand font-semibold;
+    }
+
+    /* Disabled/ellipsis */
+    & span:not([aria-current]) {
+        @apply bg-card text-muted  cursor-not-allowed;
+    }
+
+    /* Previous/Next buttons */
+    & a[rel="prev"],
+    & a[rel="next"] {
+        @apply font-semibold;
+    }
+
+    /* Disabled Previous/Next */
+    & span[aria-disabled="true"] {
+        @apply opacity-50 cursor-not-allowed;
+    }
+}
+
