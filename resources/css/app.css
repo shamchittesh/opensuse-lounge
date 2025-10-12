@@ -202,3 +202,50 @@ input:-internal-autofill-selected {
     color: var(--app-text-primary) !important;
 }
 
+/* Pagination styles */
+nav[role="navigation"] {
+    /* Pagination container */
+    & p {
+        /* "Showing X to Y of Z results" text */
+        @apply text-secondary;
+    }
+
+    /* Pagination links container */
+    & div[role="navigation"] {
+        @apply flex items-center gap-2;
+    }
+
+    /* Individual pagination links */
+    & > a,
+    & > span {
+        @apply inline-flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg transition-all;
+        min-width: 2.5rem;
+    }
+
+    /* Regular pagination link */
+    & a {
+        @apply bg-card text-primary border border-default hover:bg-brand hover:text-white hover:border-brand;
+    }
+
+    /* Active page */
+    & span[aria-current="page"] {
+        @apply bg-brand text-white border border-brand font-semibold;
+    }
+
+    /* Disabled/ellipsis */
+    & span:not([aria-current]) {
+        @apply bg-card text-muted border border-default cursor-not-allowed;
+    }
+
+    /* Previous/Next buttons */
+    & a[rel="prev"],
+    & a[rel="next"] {
+        @apply font-semibold;
+    }
+
+    /* Disabled Previous/Next */
+    & span[aria-disabled="true"] {
+        @apply opacity-50 cursor-not-allowed;
+    }
+}
+
