@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Enums\Enums\MemberStatus;
@@ -22,7 +24,7 @@ class Member extends Model
         'libera_cloak_applied',
         'status',
     ];
-  
+
     protected function casts(): array
     {
         return [
@@ -33,13 +35,13 @@ class Member extends Model
     /**
      * Scope a query to only include members with specific status(es).
      *
-     * @param MemberStatus|array<MemberStatus> $statuses
+     * @param  MemberStatus|array<MemberStatus>  $statuses
      */
     #[Scope]
-    public function withStatus(Builder $query, MemberStatus|array $statuses): void
+    protected function withStatus(Builder $query, MemberStatus|array $statuses): void
     {
         $statuses = is_array($statuses) ? $statuses : [$statuses];
-        $statusValues = array_map(fn($status) => $status->value, $statuses);
+        $statusValues = array_map(fn ($status) => $status->value, $statuses);
         $query->whereIn('status', $statusValues);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMemberRequest;
@@ -39,7 +41,7 @@ class MemberController
      */
     public function store(StoreMemberRequest $request)
     {
-        $member = Member::create($request->validated());
+        $member = Member::query()->create($request->validated());
 
         return redirect()->route('members.show', $member)
             ->with('success', 'Member created successfully.');

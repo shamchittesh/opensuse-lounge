@@ -1,12 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exports;
 
 use App\Concerns\Makeable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
+/**
+ * @phpstan-consistent-constructor
+ */
 abstract class ExportCSV
 {
     use Makeable;
