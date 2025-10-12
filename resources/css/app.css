@@ -12,12 +12,14 @@
     --app-surface: #ffffff;
     --app-surface-hover: #f8fffe;
 
-    /* Button colors */
-    --app-button-primary: #4D7D86;
-    --app-button-secondary: #ecfff8;
+    /* Button colors - Based on openSUSE brand guidelines */
+    --app-button-primary: #173f4f;        /* Cyan (Primary) */
+    --app-button-primary-text: #ffffff;
+    --app-button-secondary: #ecfff8;      /* Dark Green (Secondary) */
+    --app-button-secondary-text: #173f4f;
     --app-button-danger: #c95d63;
     --app-button-ghost: #ffffff;
-    --app-button-outline: #73ba25;
+    --app-button-outline: #173f4f;        /* Green (Primary) */
 
     /* Alert colors - harmonized with openSUSE palette */
     --app-alert-success: #5d9e1f;
@@ -30,10 +32,10 @@
     --app-text-secondary: #123f38;
     --app-text-tertiary: #0F4030;
     
-    /* Brand colors */
-    --app-brand-primary: #4D7D86;
-    --app-brand-hover: #7DC1AE;
-    --app-accent: #73ba25;
+    /* Brand colors - openSUSE official palette */
+    --app-brand-primary: #173f4f;   /* Dark Blue (Primary) */
+    --app-brand-hover: #35b9ab;     /* Cyan (Primary) */
+    --app-accent: #173f4f;          /* Green (Primary) */
     
     /* Borders */
     --app-border: rgba(18, 63, 56, 0.2);
@@ -53,12 +55,14 @@
         --app-surface: #123f38;
         --app-surface-hover: #0F4030;
 
-        /* Button colors */
-        --app-button-primary: #ecfff8;
-        --app-button-secondary: #4D7D86;
+        /* Button colors - Dark mode (keeping primary very light as requested) */
+        --app-button-primary: #ccedea;        /* Cyan 25% (very light) */
+        --app-button-primary-text: #173f4f;   /* Dark Blue for contrast */
+        --app-button-secondary: #35b9ab;      /* Green 90% */
+        --app-button-secondary-text: #173f4f;
         --app-button-danger: #e88b90;
         --app-button-ghost: #ffffff;
-        --app-button-outline: #73ba25;
+        --app-button-outline: #35b9ab;        /* Green 90% */
         /* Alert colors - harmonized with openSUSE palette (dark mode) */
         --app-alert-success: #8dd946;
         --app-alert-error: #e88b90;
@@ -70,10 +74,10 @@
         --app-text-secondary: #bfe8e1;
         --app-text-tertiary: #A5C7C3;
         
-        /* Brand colors */
-        --app-brand-primary: #7DC1AE;
-        --app-brand-hover: #A5C7C3;
-        --app-accent: #73ba25;
+        /* Brand colors - openSUSE official palette (dark mode) */
+        --app-brand-primary: #35b9ab;   /* Cyan (Primary) */
+        --app-brand-hover: #4ac0b4;     /* Cyan 90% */
+        --app-accent: #35b9ab;          /* Green 90% */
         
         /* Borders */
         --app-border: rgba(191, 232, 225, 0.2);
@@ -97,10 +101,11 @@
     --color-card: var(--app-surface);
     --color-card-hover: var(--app-surface-hover);
 
-    /* Button colors - generates bg-button-primary, hover:bg-button-primary-hover, etc. */
+    /* Button colors - generates bg-button-primary, text-button-primary-text, etc. */
     --color-button-primary: var(--app-button-primary);
-    --color-button-primary-text: var(--app-bg);
+    --color-button-primary-text: var(--app-button-primary-text);
     --color-button-secondary: var(--app-button-secondary);
+    --color-button-secondary-text: var(--app-button-secondary-text);
     --color-button-danger: var(--app-button-danger);
     --color-button-ghost: var(--app-button-ghost);
     --color-button-outline: var(--app-button-outline);
