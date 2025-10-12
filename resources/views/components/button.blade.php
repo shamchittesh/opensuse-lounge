@@ -9,11 +9,11 @@
 $baseClasses = 'cursor-pointer inline-flex transition-background duration-200 items-center justify-center font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border';
 
 $variants = [
-    'primary' => 'bg-button-primary hover:saturate-150 text-button-primary-text focus:ring-accent shadow-brand  border-transparent hover:border-default',
-    'secondary' => 'bg-button-secondary hover:bg-button-secondary/90 text-primary focus:ring-accent shadow-sm  border-default hover:border-primary/50',
-    'danger' => 'bg-button-danger hover:bg-button-danger/90 text-white focus:ring-accent shadow-sm',
-    'ghost' => 'bg-transparent hover:bg-card-hover text-primary focus:ring-accent',
-    'outline' => 'border-2 border-button-outline hover:bg-button-outline/90 text-button-outline hover:text-white focus:ring-accent',
+    'primary' => 'bg-button-primary hover:saturate-150 text-button-primary-text focus:ring-accent shadow-brand border-transparent hover:border-default',
+    'secondary' => 'bg-button-secondary hover:saturate-150 text-button-secondary-text focus:ring-accent shadow-sm border-default',
+    'danger' => 'bg-button-danger hover:bg-button-danger/90 text-white focus:ring-accent shadow-sm border-transparent',
+    'ghost' => 'bg-transparent hover:bg-card-hover text-primary focus:ring-accent border-transparent',
+    'outline' => 'border-2 border-button-outline hover:bg-button-outline/90 text-primary focus:ring-accent',
 ];
 
 $sizes = [

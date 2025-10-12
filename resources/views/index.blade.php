@@ -21,8 +21,8 @@
             An open-source project designed to modernize and simplify membership management for the openSUSE Project.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <x-button href="https://github.com/opensuse/opensuse-lounge" variant="secondary" size="lg" target="_blank">
-                View on GitHub
+            <x-button href="https://github.com/opensuse/opensuse-lounge" variant="outline" size="lg" target="_blank">
+                GitHub
             </x-button>            
             @auth
                 <x-button href="{{ route('members.index') }}" variant="primary" size="lg">
