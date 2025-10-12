@@ -54,7 +54,7 @@
         --app-surface-hover: #0F4030;
 
         /* Button colors */
-        --app-button-primary: #73ba25;
+        --app-button-primary: #ecfff8;
         --app-button-secondary: #4D7D86;
         --app-button-danger: #FF0000;
         --app-button-ghost: #ffffff;
@@ -99,6 +99,7 @@
 
     /* Button colors - generates bg-button-primary, hover:bg-button-primary-hover, etc. */
     --color-button-primary: var(--app-button-primary);
+    --color-button-primary-text: var(--app-bg);
     --color-button-secondary: var(--app-button-secondary);
     --color-button-danger: var(--app-button-danger);
     --color-button-ghost: var(--app-button-ghost);
@@ -179,5 +180,20 @@ body {
 *:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 4px rgba(115, 186, 37, 0.2);
+}
+
+/* Autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--app-surface) inset !important;
+    -webkit-text-fill-color: var(--app-text-primary) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-internal-autofill-selected {
+    background-color: var(--app-surface) !important;
+    color: var(--app-text-primary) !important;
 }
 
