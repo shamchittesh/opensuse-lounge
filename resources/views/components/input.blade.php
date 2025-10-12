@@ -28,9 +28,9 @@
         @if($required) required @endif
         {{ $attributes->merge(
             ['class' => 
-                'bg-white/5 block w-full px-4 py-2 border border-default rounded-lg shadow-sm transition-colors duration-200 focus:ring-2 focus:ring-accent focus:border-accent ' 
+                'bg-card block w-full px-4 py-2 border rounded-lg shadow-sm transition-colors duration-200 focus:ring-2 focus:ring-accent focus:border-accent ' 
                 . ($error ? 'border-danger focus:ring-danger focus:border-danger' : 'border-default') 
-                . 'text-primary placeholder-muted'
+                . ' text-primary placeholder-muted'
             ]) 
         }}
     >
