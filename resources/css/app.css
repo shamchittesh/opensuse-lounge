@@ -5,24 +5,179 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* Semantic color system using CSS variables for automatic light/dark mode */
+:root {
+    /* Surface colors */
+    --app-bg: #ecfff8;
+    --app-surface: #ffffff;
+    --app-surface-hover: #f8fffe;
+
+    /* Button colors */
+    --app-button-primary: #4D7D86;
+    --app-button-secondary: #ecfff8;
+    --app-button-danger: #FF0000;
+    --app-button-ghost: #ffffff;
+    --app-button-outline: #73ba25;
+
+    /* Alert colors */
+    --app-alert-success: #73ba25;
+    --app-alert-error: #FF0000;
+    --app-alert-warning: #FFA500;
+    --app-alert-info: #0000FF;
+    
+    /* Text colors */
+    --app-text-primary: #0c322c;
+    --app-text-secondary: #123f38;
+    --app-text-tertiary: #0F4030;
+    
+    /* Brand colors */
+    --app-brand-primary: #4D7D86;
+    --app-brand-hover: #7DC1AE;
+    --app-accent: #73ba25;
+    
+    /* Borders */
+    --app-border: rgba(18, 63, 56, 0.2);
+    
+    /* Shadows */
+    --app-shadow-sm: 0 1px 2px 0 rgb(77 125 134 / 0.05);
+    --app-shadow-md: 0 4px 14px 0 rgb(77 125 134 / 0.25);
+    --app-shadow-lg: 0 10px 25px 0 rgb(77 125 134 / 0.35);
+
+    --app-gradient-opensuse: radial-gradient(at 64% 27%, #a9e9e1 0px, transparent 50%), radial-gradient(at 71% 60%, #70c4e7 0px, transparent 40%), radial-gradient(at 11% 41%, #cdecd7 0px, transparent 50%);
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #f1f1f1;
-  }
+    :root {
+        /* Surface colors */
+        --app-bg: #0c322c;
+        --app-surface: #123f38;
+        --app-surface-hover: #0F4030;
 
-  a {
-    color: #66ccff;
-  }
+        /* Button colors */
+        --app-button-primary: #73ba25;
+        --app-button-secondary: #4D7D86;
+        --app-button-danger: #FF0000;
+        --app-button-ghost: #ffffff;
+        --app-button-outline: #73ba25;
+        /* Alert colors */
+        --app-alert-success: #73ba25;
+        --app-alert-error: #FF0000;
+        --app-alert-warning: #FFA500;
+        --app-alert-info: #9999ff;
 
-  /* adjust specific sections if needed */
-  .card {
-    background-color: #1e1e1e;
-    color: #eaeaea;
-  }
+        /* Text colors */
+        --app-text-primary: #ccedea;
+        --app-text-secondary: #bfe8e1;
+        --app-text-tertiary: #A5C7C3;
+        
+        /* Brand colors */
+        --app-brand-primary: #7DC1AE;
+        --app-brand-hover: #A5C7C3;
+        --app-accent: #73ba25;
+        
+        /* Borders */
+        --app-border: rgba(191, 232, 225, 0.2);
+        
+        /* Shadows */
+        --app-shadow-sm: 0 1px 2px 0 rgb(12 50 44 / 0.8);
+        --app-shadow-md: 0 4px 14px 0 rgb(12 50 44 / 0.9);
+        --app-shadow-lg: 0 10px 25px 0 rgb(12 50 44 / 0.95);
+
+        /* Gradients */
+        --app-gradient-opensuse: radial-gradient(at 64% 27%, #0C7A6E 0px, transparent 50%), radial-gradient(at 71% 60%, #264C5C 0px, transparent 40%), radial-gradient(at 11% 41%, #45875B 0px, transparent 50%);
+    }
 }
+
+@theme {
+    /* Font Family */
+    --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+    
+    /* Background colors - generates bg-canvas, bg-card, bg-card-hover */
+    --color-canvas: var(--app-bg);
+    --color-card: var(--app-surface);
+    --color-card-hover: var(--app-surface-hover);
+
+    /* Button colors - generates bg-button-primary, hover:bg-button-primary-hover, etc. */
+    --color-button-primary: var(--app-button-primary);
+    --color-button-secondary: var(--app-button-secondary);
+    --color-button-danger: var(--app-button-danger);
+    --color-button-ghost: var(--app-button-ghost);
+    --color-button-outline: var(--app-button-outline);
+    /* Alert colors - generates success error warning info for borders and  background and text colors */
+    --color-alert-success: var(--app-alert-success);
+    --color-alert-error: var(--app-alert-error);
+    --color-alert-warning: var(--app-alert-warning);
+    --color-alert-info: var(--app-alert-info);
+
+    
+    /* Text colors - generates text-primary, text-secondary, text-muted */
+    --color-primary: var(--app-text-primary);
+    --color-secondary: var(--app-text-secondary);
+    --color-muted: var(--app-text-tertiary);
+    
+    /* Interactive colors - generates bg-brand, hover:bg-brand-hover */
+    --color-brand: var(--app-brand-primary);
+    --color-brand-hover: var(--app-brand-hover);
+    
+    /* Accent color - generates bg-accent, text-accent */
+    --color-accent: var(--app-accent);
+    --color-accent-500: #73ba25;
+    --color-accent-600: #5c951e;
+    
+    /* Border color - generates border-default */
+    --color-default: var(--app-border);
+    
+    /* Shadows */
+    --shadow-sm: var(--app-shadow-sm);
+    --shadow-md: var(--app-shadow-md);
+    --shadow-lg: var(--app-shadow-lg);
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slide-in {
+    from { 
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Custom utility classes */
+/* radial-gradient(at 64% 27%, #a9e9e1 0px, transparent 50%), radial-gradient(at 71% 60%, #70c4e7 0px, transparent 40%), radial-gradient(at 11% 41%, #cdecd7 0px, transparent 50%) #ecfff8 */
+.bg-gradient-opensuse {
+    background: var(--app-gradient-opensuse);
+}
+
+.secondary-button-effect { 
+    /* box-shadow: inset -10px -10px 20px -20px rgba(0, 0, 0, 0.3333333333); */
+    border: solid 1px rgb(190.84, 238.96, 221.2315789474);
+}
+
+@utility shadow-brand {
+    box-shadow: var(--shadow-md);
+}
+
+@utility shadow-brand-lg {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Base styles */
+body {
+    background: var(--color-canvas);
+    color: var(--color-primary);
+}
+
+
+/* Focus styles */
+*:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 4px rgba(115, 186, 37, 0.2);
+}
+
