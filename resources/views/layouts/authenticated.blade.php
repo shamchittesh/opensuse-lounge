@@ -11,7 +11,7 @@
                     <a href="/" class="flex items-center space-x-3 group">
                         <img src="/images/logo-with-wordmark.svg" 
                             alt="openSUSE" 
-                            class="h-7 dark:invert transition-transform group-hover:scale-105">
+                            class="h-7 dark:invert transition-transform ">
                     </a>
                 </div>
                 
