@@ -19,8 +19,10 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/change-password', [PasswordChangeController::class, 'index'])->name('verification.notice');
-    Route::put('/change-password', [PasswordChangeController::class, 'update'])->name('password.change');
+    Route::middleware(['unverified'])->group(function () {
+        Route::get('/change-password', [PasswordChangeController::class, 'index'])->name('verification.notice');
+        Route::put('/change-password', [PasswordChangeController::class, 'update'])->name('password.change');
+    });
 
     Route::middleware(['verified'])->group(function () {
         Route::get('members/export', MemberExportController::class)->name('members.export');

@@ -1,41 +1,57 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Change Password - {{ config('app.name', 'Laravel') }}</title>
-</head>
-<body>
-    <h1>Change Your Password</h1>
+@extends('layouts.authenticated')
 
-    <p>Please set a new password to continue.</p>
+@section('content')
+<div class="max-w-md mx-auto space-y-6">
+    <!-- Page Header -->
+    <div class="text-center">
+        <h1 class="text-3xl font-bold text-primary">Change Your Password</h1>
+        <p class="mt-2 text-sm text-secondary">
+            Please set a new password to continue
+        </p>
+    </div>
 
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <!-- Change Password Card -->
+    <x-card>
+        @if ($errors->any())
+            <x-alert type="error" :dismissible="false">
+                <p class="font-medium mb-2">There were errors with your submission</p>
+                <ul class="list-disc list-inside text-sm space-y-1">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </x-alert>
+        @endif
 
-    <form method="POST" action="{{ route('password.change') }}">
-        @csrf
-        @method('PUT')
+        <form method="POST" action="{{ route('password.change') }}" class="space-y-6">
+            @csrf
+            @method('PUT')
 
-        <div>
-            <label for="password">New Password</label>
-            <input type="password" id="password" name="password" required autofocus>
-        </div>
+            <!-- New Password Input -->
+            <x-input
+                label="New Password"
+                name="password"
+                type="password"
+                placeholder="Enter your new password"
+                helpText="Must be at least 8 characters long"
+                required
+                autofocus
+            />
 
-        <div>
-            <label for="password_confirmation">Confirm Password</label>
-            <input type="password" id="password_confirmation" name="password_confirmation" required>
-        </div>
+            <!-- Confirm Password Input -->
+            <x-input
+                label="Confirm Password"
+                name="password_confirmation"
+                type="password"
+                placeholder="Confirm your new password"
+                required
+            />
 
-        <button type="submit">Change Password</button>
-    </form>
-</body>
-</html>
+            <!-- Submit Button -->
+            <x-button type="submit" variant="primary" class="w-full">
+                Change Password
+            </x-button>
+        </form>
+    </x-card>
+</div>
+@endsection
