@@ -212,7 +212,7 @@ nav[role="navigation"] {
 
     /* Pagination links container */
     & div[role="navigation"] {
-        @apply flex items-center gap-2;
+        @apply flex items-center gap-2 border-0;
     }
 
     /* Individual pagination links */
@@ -234,7 +234,7 @@ nav[role="navigation"] {
 
     /* Disabled/ellipsis */
     & span:not([aria-current]) {
-        @apply bg-card text-muted border border-default cursor-not-allowed;
+        @apply bg-card text-muted  cursor-not-allowed;
     }
 
     /* Previous/Next buttons */
