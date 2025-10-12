@@ -20,6 +20,7 @@
         "barryvdh/laravel-ide-helper": "^3.6",
         "driftingly/rector-laravel": "^2.0",
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.0",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.25",
         "laravel/sail": "^1.41",
@@ -77,6 +78,10 @@
             "pint",
             "rector process --dry-run --ansi",
             "phpstan analyse --no-progress --no-ansi --no-interaction --memory-limit=-1"
+        ],
+        "lint:fix": [
+            "pint",
+            "rector process"
         ],
         "ide": [
             "@php artisan ide-helper:generate",
