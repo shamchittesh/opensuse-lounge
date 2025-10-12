@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Enums\Enums\UserRole;
 use App\Models\User;
+use App\Notifications\AccountCreated;
 use Illuminate\Console\Command;
 
 use function Laravel\Prompts\multiselect;
@@ -39,14 +40,19 @@ class CreateUser extends Command
             return 1;
         }
 
-        User::create([
+        $password = bin2hex(random_bytes(4));
+
+        $user = User::query()->create([
             'name' => $name,
             'email' => $email,
-            'password' => bcrypt(str()->random(16)),
+            'password' => $password,
             'roles' => $this->getRoles(),
         ]);
 
+        $user->notify(new AccountCreated($password));
+
         $this->info('User created successfully!');
+
     }
 
     public function getRoles(): array

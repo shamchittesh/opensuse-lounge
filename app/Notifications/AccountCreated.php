@@ -13,7 +13,7 @@ class AccountCreated extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(private string $email, private string $password) {}
+    public function __construct(private string $password) {}
 
     /**
      * Get the notification's delivery channels.
@@ -26,14 +26,14 @@ class AccountCreated extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
+     * @param  \App\Models\User  $notifiable
      */
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
             ->subject('Your account has been created')
             ->markdown('mail.new-account-created', [
-                'email' => $this->email,
+                'email' => $notifiable->email,
                 'password' => $this->password,
             ]);
     }
