@@ -20,9 +20,6 @@
                     <x-nav-link href="{{ route('members.index') }}" :active="request()->routeIs('members.*')">
                         Members
                     </x-nav-link>
-                    <x-nav-link href="{{ route('styleguide') }}" :active="request()->routeIs('styleguide')">
-                        Style Guide
-                    </x-nav-link>
                 </div>
             </div>
             
