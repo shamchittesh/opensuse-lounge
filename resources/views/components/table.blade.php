@@ -8,8 +8,23 @@
             <thead class="bg-card/80 backdrop-blur-sm">
                 <tr>
                     @foreach($headers as $header)
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-muted uppercase tracking-wider">
-                            {{ $header }}
+                        @php
+                            // Support both string headers and array headers with alignment
+                            if (is_array($header)) {
+                                $headerText = $header['text'] ?? $header[0] ?? '';
+                                $headerAlign = $header['align'] ?? 'left';
+                            } else {
+                                $headerText = $header;
+                                $headerAlign = 'left';
+                            }
+                            $alignClass = match($headerAlign) {
+                                'right' => 'text-right',
+                                'center' => 'text-center',
+                                default => 'text-left',
+                            };
+                        @endphp
+                        <th scope="col" class="px-6 py-3 {{ $alignClass }} text-xs font-medium text-muted uppercase tracking-wider">
+                            {{ $headerText }}
                         </th>
                     @endforeach
                 </tr>
