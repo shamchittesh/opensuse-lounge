@@ -15,15 +15,15 @@
     /* Button colors */
     --app-button-primary: #4D7D86;
     --app-button-secondary: #ecfff8;
-    --app-button-danger: #FF0000;
+    --app-button-danger: #c95d63;
     --app-button-ghost: #ffffff;
     --app-button-outline: #73ba25;
 
-    /* Alert colors */
-    --app-alert-success: #73ba25;
-    --app-alert-error: #FF0000;
-    --app-alert-warning: #FFA500;
-    --app-alert-info: #0000FF;
+    /* Alert colors - harmonized with openSUSE palette */
+    --app-alert-success: #5d9e1f;
+    --app-alert-error: #c95d63;
+    --app-alert-warning: #d4941d;
+    --app-alert-info: #4D7D86;
     
     /* Text colors */
     --app-text-primary: #0c322c;
@@ -56,14 +56,14 @@
         /* Button colors */
         --app-button-primary: #ecfff8;
         --app-button-secondary: #4D7D86;
-        --app-button-danger: #FF0000;
+        --app-button-danger: #e88b90;
         --app-button-ghost: #ffffff;
         --app-button-outline: #73ba25;
-        /* Alert colors */
-        --app-alert-success: #73ba25;
-        --app-alert-error: #FF0000;
-        --app-alert-warning: #FFA500;
-        --app-alert-info: #9999ff;
+        /* Alert colors - harmonized with openSUSE palette (dark mode) */
+        --app-alert-success: #8dd946;
+        --app-alert-error: #e88b90;
+        --app-alert-warning: #f5b855;
+        --app-alert-info: #7DC1AE;
 
         /* Text colors */
         --app-text-primary: #ccedea;
