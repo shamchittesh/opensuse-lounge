@@ -32,7 +32,7 @@
 
     <!-- Members Table Card -->
     <x-card :padding="false">
-        <x-table :headers="['Username', 'Email', 'Status', 'Libera Nick', 'Actions']">
+        <x-table :headers="['Username', 'Email', 'Status', 'Libera Nick', ['text' => 'Actions', 'align' => 'right']]">
             @forelse ($members as $member)
                 <tr class="hover:bg-card-hover transition-colors">
                     <td class="px-6 py-4 whitespace-nowrap">
