@@ -1,83 +1,147 @@
-@extends('layouts.app')
+@extends('layouts.authenticated')
 
 @section('content')
-<h1>Create New Member</h1>
-
-<a href="{{ route('members.index') }}">Back to Members</a>
-
-<form action="{{ route('members.store') }}" method="POST">
-    @csrf
-
-    <div>
-        <label for="username">Username *</label>
-        <input type="text" id="username" name="username" value="{{ old('username') }}" required>
-        @error('username')
-            <span>{{ $message }}</span>
-        @enderror
+<div class="max-w-3xl space-y-6">
+    <!-- Page Header -->
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-3xl font-bold text-primary">Create New Member</h1>
+            <p class="mt-1 text-sm text-secondary">
+                Add a new member to the openSUSE community
+            </p>
+        </div>
+        <x-button href="{{ route('members.index') }}" variant="ghost">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            Back
+        </x-button>
     </div>
 
-    <div>
-        <label for="email_target">Email Target *</label>
-        <input type="email" id="email_target" name="email_target" value="{{ old('email_target') }}" required>
-        @error('email_target')
-            <span>{{ $message }}</span>
-        @enderror
-    </div>
+    <!-- Form Card -->
+    <x-card title="Member Information">
+        <form action="{{ route('members.store') }}" method="POST" class="space-y-6">
+            @csrf
 
-    <div>
-        <label for="email_nick">Email Nick</label>
-        <input type="text" id="email_nick" name="email_nick" value="{{ old('email_nick') }}">
-        @error('email_nick')
-            <span>{{ $message }}</span>
-        @enderror
-    </div>
+            <!-- Basic Information Section -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-medium text-primary border-b border-default pb-2">
+                    Basic Information
+                </h3>
 
-    <div>
-        <label for="email_full">Email Full</label>
-        <input type="email" id="email_full" name="email_full" value="{{ old('email_full') }}">
-        @error('email_full')
-            <span>{{ $message }}</span>
-        @enderror
-    </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <x-input 
+                        label="Username"
+                        name="username"
+                        type="text"
+                        placeholder="johndoe"
+                        :value="old('username')"
+                        required
+                    />
 
-    <div>
-        <label for="libera_nick">Libera Nick</label>
-        <input type="text" id="libera_nick" name="libera_nick" value="{{ old('libera_nick') }}">
-        @error('libera_nick')
-            <span>{{ $message }}</span>
-        @enderror
-    </div>
+                    <x-input 
+                        label="Status"
+                        name="status"
+                        type="select"
+                        required
+                    >
+                        <select id="status" 
+                                name="status" 
+                                required
+                                class="block w-full px-4 py-2 border border-default rounded-lg shadow-sm transition-colors duration-200 focus:ring-2 focus:ring-accent bg-card text-primary">
+                            <option value="">Select status</option>
+                            @foreach(App\Enums\Enums\MemberStatus::cases() as $status)
+                                <option value="{{ $status->value }}" {{ old('status') == $status->value ? 'selected' : '' }}>
+                                    {{ $status->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('status')
+                            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </x-input>
+                </div>
+            </div>
 
-    <div>
-        <label for="libera_cloak">Libera Cloak</label>
-        <input type="text" id="libera_cloak" name="libera_cloak" value="{{ old('libera_cloak') }}">
-        @error('libera_cloak')
-            <span>{{ $message }}</span>
-        @enderror
-    </div>
+            <!-- Email Information Section -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-medium text-primary border-b border-default pb-2">
+                    Email Information
+                </h3>
 
-    <div>
-        <label for="libera_cloak_applied">Libera Cloak Applied</label>
-        <input type="datetime-local" id="libera_cloak_applied" name="libera_cloak_applied" value="{{ old('libera_cloak_applied') }}">
-        @error('libera_cloak_applied')
-            <span>{{ $message }}</span>
-        @enderror
-    </div>
+                <x-input 
+                    label="Email Target"
+                    name="email_target"
+                    type="email"
+                    placeholder="john@example.com"
+                    :value="old('email_target')"
+                    helpText="Primary email address for this member"
+                    required
+                />
 
-    <div>
-        <label for="status">Status *</label>
-        <select id="status" name="status" required>
-            @foreach(App\Enums\Enums\MemberStatus::cases() as $status)
-                <option value="{{ $status->value }}" {{ old('status') == $status->value ? 'selected' : '' }}>
-                    {{ $status->name }}
-                </option>
-            @endforeach
-        </select>
-        @error('status')
-            <span>{{ $message }}</span>
-        @enderror
-    </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <x-input 
+                        label="Email Nick"
+                        name="email_nick"
+                        type="text"
+                        placeholder="johndoe"
+                        :value="old('email_nick')"
+                    />
 
-    <button type="submit">Create Member</button>
-</form>
+                    <x-input 
+                        label="Email Full"
+                        name="email_full"
+                        type="email"
+                        placeholder="john.doe@opensuse.org"
+                        :value="old('email_full')"
+                    />
+                </div>
+            </div>
+
+            <!-- Libera IRC Information Section -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-medium text-primary border-b border-default pb-2">
+                    Libera IRC Information
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <x-input 
+                        label="Libera Nick"
+                        name="libera_nick"
+                        type="text"
+                        placeholder="johndoe"
+                        :value="old('libera_nick')"
+                        helpText="IRC nickname on Libera.Chat"
+                    />
+
+                    <x-input 
+                        label="Libera Cloak"
+                        name="libera_cloak"
+                        type="text"
+                        placeholder="opensuse/member/johndoe"
+                        :value="old('libera_cloak')"
+                    />
+                </div>
+
+                <x-input 
+                    label="Libera Cloak Applied Date"
+                    name="libera_cloak_applied"
+                    type="datetime-local"
+                    :value="old('libera_cloak_applied')"
+                    helpText="When was the cloak applied?"
+                />
+            </div>
+
+            <!-- Form Actions -->
+            <div class="flex items-center justify-end space-x-4 pt-4 border-t border-default">
+                <x-button href="{{ route('members.index') }}" variant="ghost">
+                    Cancel
+                </x-button>
+                <x-button type="submit" variant="primary">
+                    Create Member
+                </x-button>
+            </div>
+        </form>
+    </x-card>
+</div>
 @endsection
