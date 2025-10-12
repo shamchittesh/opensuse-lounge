@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-<div class="max-w-md mx-auto">
+<div class="max-w-md mx-auto h-full flex flex-col justify-center">
     <!-- Login Card -->
     <div class="bg-card/95 backdrop-blur-sm rounded-2xl shadow-brand-lg border border-default overflow-hidden animate-fade-in">
         <!-- Card Header -->
