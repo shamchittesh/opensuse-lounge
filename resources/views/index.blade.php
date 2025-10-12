@@ -10,16 +10,7 @@
         <p class="text-xl md:text-2xl text-secondary max-w-3xl mx-auto">
             A simple membership management system for the openSUSE community
         </p>
-    </div>
 
-    <!-- Community Section -->
-    <x-card class="space-y-6 p-12">
-        <h2 class="text-3xl font-bold text-primary text-center">
-            Built by the Community, for the Community
-        </h2>
-        <p class="text-lg text-secondary max-w-2xl mx-auto text-center">
-            An open-source project designed to modernize and simplify membership management for the openSUSE Project.
-        </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <x-button href="https://github.com/opensuse/opensuse-lounge" variant="outline" size="lg" target="_blank">
                 GitHub
@@ -34,6 +25,6 @@
                 </x-button>
             @endauth
         </div>
-    </x-card>
+    </div>
 </div>
 @endsection

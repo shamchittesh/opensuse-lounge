@@ -72,7 +72,7 @@
 @endsection
 
 @section('main')
-<main class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex-1">
+<main class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex- z-10">
     @yield('content')
 </main>
 @endsection

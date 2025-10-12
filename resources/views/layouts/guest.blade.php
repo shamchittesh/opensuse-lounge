@@ -33,7 +33,7 @@
 @endsection
 
 @section('main')
-<main class="flex px-4 sm:px-6 lg:px-8 py-12 flex-1">
+<main class="flex px-4 sm:px-6 lg:px-8 py-12 flex-1 z-10">
     <div class="w-full">
         @yield('content')
     </div>

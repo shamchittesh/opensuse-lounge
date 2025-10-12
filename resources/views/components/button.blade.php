@@ -13,7 +13,7 @@ $variants = [
     'secondary' => 'bg-button-secondary hover:saturate-150 text-button-secondary-text focus:ring-accent shadow-sm border-default',
     'danger' => 'bg-button-danger hover:bg-button-danger/90 text-white focus:ring-accent shadow-sm border-transparent',
     'ghost' => 'bg-transparent hover:bg-card-hover text-primary focus:ring-accent border-transparent',
-    'outline' => 'border-2 border-button-outline hover:bg-button-outline/90 text-primary focus:ring-accent',
+    'outline' => 'border-2 border-button-outline hover:bg-button-outline/90 text-primary hover:text-white focus:ring-accent',
 ];
 
 $sizes = [
