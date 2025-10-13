@@ -10,6 +10,7 @@ use App\Exports\MemberExport;
 use App\Models\Member;
 use App\Models\User;
 use Illuminate\Container\Attributes\CurrentUser;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class MemberExportController
@@ -18,10 +19,10 @@ class MemberExportController
     {
         Gate::authorize('export', Member::class);
 
-        if ($user->hasRole(UserRole::ELECTION)) {
-            return ElectionExport::make()->download();
+        if ($user->hasRole(UserRole::MEMBERSHIP)) {
+            return MemberExport::make()->download();
         }
 
-        return MemberExport::make()->download();
+        return ElectionExport::make()->download();
     }
 }

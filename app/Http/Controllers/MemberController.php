@@ -20,8 +20,10 @@ class MemberController
         Gate::authorize('viewAny', Member::class);
 
         $members = Member::query()
+            ->search($request->q)
             ->orderBy('username')
-            ->paginate(15);
+            ->paginate(15)
+            ->withQueryString();
 
         return view('members.index', compact('members'));
     }

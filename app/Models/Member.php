@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Member extends Model
 {
@@ -30,6 +31,21 @@ class Member extends Model
         return [
             'status' => MemberStatus::class,
         ];
+    }
+
+    /**
+     * Scope a query to search members by username, email, or libera nick.
+     */
+    #[Scope]
+    public function search(Builder $query, ?string $search): void
+    {
+        $query->when($search, function (Builder $q, $search) {
+            $q->whereFullText(
+                ['username', 'email_target', 'email_nick', 'libera_nick'],
+                Str::toBooleanFullTextQuery($search),
+                ['mode' => 'boolean']
+            );
+        });
     }
 
     /**
