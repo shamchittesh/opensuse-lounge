@@ -11,22 +11,22 @@
             </p>
         </div>
         <div class="flex flex-col sm:flex-row gap-3">
-            @can('export', App\Models\Member::class)
+            @if($canExportMembers)
                 <x-button href="{{ route('members.export') }}" variant="secondary">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
                     </svg>
                     Export CSV
                 </x-button>
-            @endcan
-            @can('create', App\Models\Member::class)
+            @endif
+            @if($canCreateMembers)
                 <x-button href="{{ route('members.create') }}" variant="primary">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
                     Add Member
                 </x-button>
-            @endcan
+            @endif
         </div>
     </div>
 
@@ -36,7 +36,7 @@
             @forelse ($members as $member)
                 <tr class="hover:bg-card-hover transition-colors">
                     <td class="px-6 py-4 whitespace-nowrap">
-                        @can('view', $member)
+                        @if($canViewMembers)
                             <a href="{{ route('members.show', $member) }}" class="flex items-center group">
                                 <div class="flex-shrink-0 h-10 w-10 bg-brand rounded-full flex items-center justify-center group-hover:bg-brand-hover transition-colors">
                                     <span class="text-white font-medium text-sm">
@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endcan
+                        @endif
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-primary">{{ $member->email_target }}</div>
@@ -85,8 +85,8 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div class="flex items-center justify-end gap-1">
-                            @can('view', $member)
-                                <a href="{{ route('members.show', $member) }}" 
+                            @if($canViewMembers)
+                                <a href="{{ route('members.show', $member) }}"
                                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium rounded-md bg-card border border-default text-primary hover:bg-brand hover:text-white hover:border-brand transition-all"
                                    title="View member">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,9 +95,9 @@
                                     </svg>
                                     <span class="ml-1.5">View</span>
                                 </a>
-                            @endcan
-                            @can('update', $member)
-                                <a href="{{ route('members.edit', $member) }}" 
+                            @endif
+                            @if($canUpdateMembers)
+                                <a href="{{ route('members.edit', $member) }}"
                                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium rounded-md bg-card border border-default text-primary hover:bg-brand hover:text-white hover:border-brand transition-all"
                                    title="Edit member">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,15 +105,15 @@
                                     </svg>
                                     <span class="ml-1.5">Edit</span>
                                 </a>
-                            @endcan
-                            @can('delete', $member)
-                                <form action="{{ route('members.destroy', $member) }}" 
-                                      method="POST" 
+                            @endif
+                            @if($canDeleteMembers)
+                                <form action="{{ route('members.destroy', $member) }}"
+                                      method="POST"
                                       class="inline"
                                       onsubmit="return confirm('Are you sure you want to delete this member?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" 
+                                    <button type="submit"
                                             class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium rounded-md bg-card border border-default text-button-danger hover:bg-button-danger hover:text-white hover:border-button-danger transition-all"
                                             title="Delete member">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,7 +122,7 @@
                                         <span class="ml-1.5">Delete</span>
                                     </button>
                                 </form>
-                            @endcan
+                            @endif
                         </div>
                     </td>
                 </tr>

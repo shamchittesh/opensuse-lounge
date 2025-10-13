@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Enums\Enums\UserRole;
 use App\Models\Member;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class MemberPolicy
 {
@@ -20,7 +19,7 @@ class MemberPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Member $member): bool
+    public function view(User $user, ?Member $member = null): bool
     {
         return $user->hasRole([UserRole::MEMBERSHIP, UserRole::ELECTION]);
     }
@@ -36,7 +35,7 @@ class MemberPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Member $member): bool
+    public function update(User $user, ?Member $member = null): bool
     {
         return $user->hasRole([UserRole::MEMBERSHIP]);
     }
@@ -44,7 +43,7 @@ class MemberPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Member $member): bool
+    public function delete(User $user, ?Member $member = null): bool
     {
         return $user->hasRole([UserRole::MEMBERSHIP]);
     }
