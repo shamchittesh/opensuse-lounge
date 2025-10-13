@@ -39,12 +39,12 @@ Update the .env file with your database credentials and any other required confi
    php artisan migrate --seed
    ```
 
-5. Build frontend assets
+5. Build frontend assets (on a different terminal session)
    ```bash
    npm run dev
    ```
 
-6. **Start the development server**
+6. **Start the development server (if you do not use herd/LAMP-like stack)**
    ```bash
    php artisan serve
    ```
