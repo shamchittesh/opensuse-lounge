@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Enums\Enums\MemberStatus;
 use App\Models\Member;
 use App\Models\User;
@@ -7,10 +9,10 @@ use App\Models\User;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
+use function Pest\Laravel\delete;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 use function Pest\Laravel\put;
-use function Pest\Laravel\delete;
 
 beforeEach(function () {
     $this->membershipUser = User::factory()->membership()->create();

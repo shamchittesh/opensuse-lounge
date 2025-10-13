@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -26,7 +29,7 @@ class AccountCreated extends Notification
     }
 
     /**
-     * @param  \App\Models\User  $notifiable
+     * @param  User  $notifiable
      */
     public function toMail(object $notifiable): MailMessage
     {

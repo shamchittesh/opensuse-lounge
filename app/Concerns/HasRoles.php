@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Concerns;
 
 use App\Enums\Enums\UserRole;
@@ -14,7 +16,7 @@ trait HasRoles
      * @param  UserRole|array<UserRole>  $roles
      */
     #[Scope]
-    public function withRole(Builder $query, UserRole|array $roles): void
+    protected function withRole(Builder $query, UserRole|array $roles): void
     {
         $roles = is_array($roles) ? $roles : [$roles];
         $roleValues = array_map(fn ($role) => $role->value, $roles);

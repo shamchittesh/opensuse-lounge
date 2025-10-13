@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Enums\Enums\UserRole;
@@ -69,7 +71,7 @@ class CreateUser extends Command
             }
         }
 
-        if (empty($selectedRoles) && ! $this->option('force')) {
+        if (blank($selectedRoles) && ! $this->option('force')) {
 
             return multiselect(
                 label: 'Select roles for the user (use space to select, arrow keys to navigate, enter to confirm):',

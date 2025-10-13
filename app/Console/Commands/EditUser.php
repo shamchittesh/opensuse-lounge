@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Enums\Enums\UserRole;
@@ -39,9 +41,9 @@ class EditUser extends Command
         }
 
         $user->update([
-            'name' => $name ?? $user->name,
+            'name' => $$user->name ?? $name,
             'email' => $email,
-            'roles' => empty($this->option('override-roles')) ? $user->roles : $this->getRoles(),
+            'roles' => blank($this->option('override-roles')) ? $user->roles : $this->getRoles(),
         ]);
 
         $this->info('User updated successfully!');
