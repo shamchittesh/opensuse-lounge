@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\View\Composers;
 
+use App\Models\User;
 use App\Models\Member;
 use Illuminate\View\View;
 
@@ -15,7 +16,7 @@ class MemberComposer
     public function compose(View $view): void
     {
         /**
-         * @var \App\Models\User|null $user
+         * @var User|null $user
          */
         $user = auth()->user();
 
