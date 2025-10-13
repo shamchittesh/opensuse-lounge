@@ -15,6 +15,7 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "@imacrayon/alpine-ajax": "^0.12.4",
         "alpinejs": "^3.15.0"
     }
 }

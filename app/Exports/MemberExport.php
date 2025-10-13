@@ -27,7 +27,9 @@ class MemberExport extends ExportCSV
 
     protected function query(): Builder
     {
-        return Member::query()->orderBy('username');
+        return Member::query()
+            ->search(request('q'))
+            ->orderBy('username');
     }
 
     protected function filename(): string
