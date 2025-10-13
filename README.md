@@ -39,12 +39,12 @@ Update the .env file with your database credentials and any other required confi
    php artisan migrate --seed
    ```
 
-5. Build frontend assets
+5. Build frontend assets (on a different terminal session)
    ```bash
    npm run dev
    ```
 
-6. **Start the development server**
+6. **Start the development server (if you do not use herd/LAMP-like stack)**
    ```bash
    php artisan serve
    ```
@@ -58,7 +58,43 @@ Update the .env file with your database credentials and any other required confi
     ```
 
 > [!NOTE]
-> You _may_ use the provided `compose.yaml` for access to a mail dev server and mysql database.
+> **Development Environment Options**
+>
+> **New to PHP? Start here:**
+>
+> **Option 1: php.new (Windows, Mac, Linux)**
+> - One-line command to install PHP 8.4, Composer, and Laravel
+> - Fast setup for complete beginners
+> - [Visit php.new](https://php.new/)
+> - After installation, use Compose for database/email (see below)
+>
+> **Option 2: Laravel Herd (macOS/Windows) - Free/Paid**
+> - All-in-one
+> - Includes PHP, Nginx, databases*, and mail interface*
+> - Free tier works great, use `compose.yaml` or DBngin (MacOS) for MySQL as complementary
+> - [Download Herd](https://herd.laravel.com/)
+>
+> **Know PHP but new to Laravel?**
+>
+> **Option 3: Compose**
+> - Use your existing PHP installation
+> - Provides MySQL 8.4 and Mailpit for email testing
+> - Run: `docker compose up -d`
+>
+> **Experienced Laravel Developer?**
+>
+> **Option 4: Laravel Valet (macOS)**
+> - Free CLI alternative to Herd
+> - [Valet Documentation](https://laravel.com/docs/12.x/valet)
+>
+> **Option 5: Valet+ (Linux)**
+> - Valet for Ubuntu/Debian users
+> - Same lightweight approach as Valet with MYSQL included
+> - [Valet+ Documentation](https://valetlinux.plus)
+
+## Using Compose
+
+> You can use the provided `compose.yaml` for a complete development environment:
 
   MySQL 8.4:
   - Port: 3306
