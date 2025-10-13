@@ -10,7 +10,6 @@ use App\Exports\MemberExport;
 use App\Models\Member;
 use App\Models\User;
 use Illuminate\Container\Attributes\CurrentUser;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class MemberExportController

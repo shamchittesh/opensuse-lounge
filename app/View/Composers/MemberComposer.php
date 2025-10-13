@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\View\Composers;
 
-use App\Models\User;
 use App\Models\Member;
+use App\Models\User;
 use Illuminate\View\View;
 
 class MemberComposer
