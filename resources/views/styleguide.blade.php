@@ -78,29 +78,29 @@
             <h2 class="text-2xl font-bold text-primary">Form Inputs</h2>
             <p class="text-sm text-secondary mt-1">Text inputs with labels, help text, and error states</p>
         </div>
-        
+
         <x-card>
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Basic Input -->
-                <x-input 
-                    name="username" 
-                    label="Username" 
+                <x-input
+                    name="username"
+                    label="Username"
                     placeholder="Enter your username"
                 />
 
                 <!-- Required Input -->
-                <x-input 
-                    name="email" 
-                    label="Email Address" 
+                <x-input
+                    name="email"
+                    label="Email Address"
                     type="email"
                     placeholder="you@example.com"
                     required
                 />
 
                 <!-- Input with Help Text -->
-                <x-input 
-                    name="password" 
-                    label="Password" 
+                <x-input
+                    name="password"
+                    label="Password"
                     type="password"
                     placeholder="••••••••"
                     helpText="Must be at least 8 characters long"
@@ -108,28 +108,116 @@
                 />
 
                 <!-- Input with Error -->
-                <x-input 
-                    name="confirm_password" 
-                    label="Confirm Password" 
+                <x-input
+                    name="confirm_password"
+                    label="Confirm Password"
                     type="password"
                     placeholder="••••••••"
                     error="Passwords do not match"
                 />
 
                 <!-- Text Input -->
-                <x-input 
-                    name="phone" 
-                    label="Phone Number" 
+                <x-input
+                    name="phone"
+                    label="Phone Number"
                     type="tel"
                     placeholder="+1 (555) 000-0000"
                 />
 
                 <!-- Number Input -->
-                <x-input 
-                    name="age" 
-                    label="Age" 
+                <x-input
+                    name="age"
+                    label="Age"
                     type="number"
                     placeholder="18"
+                />
+            </div>
+        </x-card>
+    </section>
+
+    <!-- Dropdowns -->
+    <section class="space-y-6">
+        <div class="border-b border-default pb-2">
+            <h2 class="text-2xl font-bold text-primary">Dropdowns</h2>
+            <p class="text-sm text-secondary mt-1">Select dropdowns with labels, help text, and error states</p>
+        </div>
+
+        <x-card>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Basic Dropdown -->
+                <x-dropdown
+                    name="country"
+                    label="Country"
+                    placeholder="Select your country"
+                    :options="[
+                        'us' => 'United States',
+                        'ca' => 'Canada',
+                        'mx' => 'Mexico',
+                        'uk' => 'United Kingdom',
+                        'fr' => 'France',
+                        'de' => 'Germany'
+                    ]"
+                />
+
+                <!-- Required Dropdown -->
+                <x-dropdown
+                    name="role"
+                    label="User Role"
+                    :options="[
+                        'admin' => 'Administrator',
+                        'moderator' => 'Moderator',
+                        'member' => 'Member',
+                        'viewer' => 'Viewer'
+                    ]"
+                    required
+                />
+
+                <!-- Dropdown with Help Text -->
+                <x-dropdown
+                    name="status"
+                    label="Account Status"
+                    :options="[
+                        'active' => 'Active',
+                        'inactive' => 'Inactive',
+                        'pending' => 'Pending Verification',
+                        'suspended' => 'Suspended'
+                    ]"
+                    value="active"
+                    helpText="Change the status of your account"
+                />
+
+                <!-- Dropdown with Error -->
+                <x-dropdown
+                    name="category"
+                    label="Category"
+                    :options="[
+                        'tech' => 'Technology',
+                        'design' => 'Design',
+                        'business' => 'Business',
+                        'marketing' => 'Marketing'
+                    ]"
+                    error="Please select a valid category"
+                />
+
+                <!-- Simple Dropdown (indexed array) -->
+                <x-dropdown
+                    name="theme"
+                    label="Theme Preference"
+                    :options="['Light', 'Dark', 'Auto']"
+                />
+
+                <!-- Dropdown with Pre-selected Value -->
+                <x-dropdown
+                    name="language"
+                    label="Language"
+                    :options="[
+                        'en' => 'English',
+                        'es' => 'Spanish',
+                        'fr' => 'French',
+                        'de' => 'German',
+                        'it' => 'Italian'
+                    ]"
+                    value="en"
                 />
             </div>
         </x-card>

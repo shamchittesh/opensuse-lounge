@@ -30,7 +30,7 @@
                 </h3>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <x-input 
+                    <x-input
                         label="Username"
                         name="username"
                         type="text"
@@ -39,27 +39,14 @@
                         required
                     />
 
-                    <x-input 
+                    <x-dropdown
                         label="Status"
                         name="status"
-                        type="select"
+                        placeholder="Select status"
+                        :options="App\Enums\Enums\MemberStatus::asSelect()"
+                        :value="old('status')"
                         required
-                    >
-                        <select id="status" 
-                                name="status" 
-                                required
-                                class="block w-full px-4 py-2 border border-default rounded-lg shadow-sm transition-colors duration-200 focus:ring-2 focus:ring-accent bg-card text-primary">
-                            <option value="">Select status</option>
-                            @foreach(App\Enums\Enums\MemberStatus::cases() as $status)
-                                <option value="{{ $status->value }}" {{ old('status') == $status->value ? 'selected' : '' }}>
-                                    {{ $status->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('status')
-                            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
-                        @enderror
-                    </x-input>
+                    />
                 </div>
             </div>
 
